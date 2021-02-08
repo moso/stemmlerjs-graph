@@ -1,4 +1,3 @@
-
 import { CurrentSongPlayingResult } from '../../../shared/infra/graphql/generated/types';
 import { Mapper } from '../../../shared/core/mapper';
 
@@ -13,7 +12,7 @@ export class CurrentSongPlayingResultMap implements Mapper<CurrentSongPlayingRes
         image: apiResult.item.album.images[0].url
       },
       artist: {
-        name: apiResult.item.artists[0].name,
+        name: apiResult.item.artists.map((x) => x.name).join(', '),
       },
       previewUrl: apiResult.item.preview_url,
       externalUrl: apiResult.item.external_urls.spotify,
